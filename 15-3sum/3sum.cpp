@@ -17,9 +17,11 @@ public:
                     j++;
                 } else{
                     result.push_back({nums[i],nums[j],nums[k]});
-                    while (j < k && nums[j] == nums[j+1]) j++;
-                    while (j < k && nums[k] == nums[k-1]) k--;  
-                    j++; k--;
+                    j++;
+
+                    while(nums[j] == nums[j-1] && j<k){
+                        j++;
+                    }
                 }
             }
         }
