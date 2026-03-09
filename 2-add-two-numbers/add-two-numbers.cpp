@@ -11,12 +11,6 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        if(!l1){
-            return l2;
-        }
-        if(!l2){
-            return l1;
-        }
         ListNode* head = new ListNode();
         ListNode* curr = head;
         int extra = 0;
