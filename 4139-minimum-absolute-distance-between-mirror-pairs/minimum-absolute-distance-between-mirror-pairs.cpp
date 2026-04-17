@@ -2,20 +2,15 @@ class Solution {
 public:
     int minMirrorPairDistance(vector<int>& nums) {
         unordered_map<int, int> dict;
-        bool found = false;
         int minDist = INT_MAX;
         for(int i=0;i<nums.size();i++){
             if(dict.count(nums[i])!=0){
-                found = true;
                 int dist = i - dict[nums[i]];
                 minDist = min(dist,minDist);
             }
             dict[reverse(nums[i])]= i;
         }
-        if(found){
-            return minDist;
-        }
-        return -1;
+        return minDist == INT_MAX ? -1 : minDist;
     }
 
     int reverse(int x){
