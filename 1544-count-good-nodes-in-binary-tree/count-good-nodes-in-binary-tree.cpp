@@ -17,11 +17,7 @@ public:
 
     int dfs(TreeNode* root, int latestMax){
         if(!root) return 0;
-        int sum = 0;
-        if(root->val>= latestMax){
-            latestMax= root->val;
-            sum = 1;
-        }
-        return sum + dfs(root->left,latestMax) + dfs(root->right, latestMax);
+        int newMax = max(latestMax, root->val);
+        return (latestMax<= root->val) + dfs(root->left,newMax) + dfs(root->right, newMax);
     }
 };
