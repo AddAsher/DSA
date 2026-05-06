@@ -11,14 +11,13 @@
  */
 class Solution {
 public:
+    int goodNodes(TreeNode* root) {
+        return dfs(root, root->val);        
+    }
+
     int dfs(TreeNode* root, int latestMax){
         if(!root) return 0;
         int newMax = max(latestMax, root->val);
         return (latestMax<= root->val) + dfs(root->left,newMax) + dfs(root->right, newMax);
     }
-    
-    int goodNodes(TreeNode* root) {
-        return dfs(root, root->val);        
-    }
-
 };
