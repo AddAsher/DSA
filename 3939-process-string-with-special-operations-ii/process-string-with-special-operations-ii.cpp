@@ -1,39 +1,54 @@
 class Solution {
-    typedef long long ll;
 public:
-    char processStr(string s, ll k) {
-        int n = s.size();
-        ll len = 0;
+    char processStr(string s, long long k) {
+        long long len = 0;
 
-        for (auto& ch : s) {
-            if (ch == '*')
-                len = max(len - 1, 0LL);
-            else if (ch == '#')
+        // Step 1: compute final length
+        for (char c : s) {
+            if (c == '*') {
+                len = max(0LL, len - 1);
+            }
+            else if (c == '#') {
                 len *= 2;
-            else if (ch != '%')
+            }
+            else if (c != '%') {
                 len++;
+            }
         }
 
+        // boundary check
         if (k >= len) return '.';
 
-        for (int i = n - 1;; i--) {
-            switch (s[i]) {
-            case '*':
+        // Step 2: backward simulation
+        for (int i = (int)s.size() - 1; i >= 0; i--) {
+            char c = s[i];
+
+            if (c == '*') {
                 len++;
-                break;
-            case '#':
-                if (k >= len / 2)
-                    k -= len / 2;
-                len /= 2;
-                break;
-            case '%':
+            }
+
+            else if (c == '#') {
+                long long half = len / 2;
+
+                if (k >= half) {
+                    k -= half;
+                }
+
+                len = half;
+            }
+
+            else if (c == '%') {
                 k = len - 1 - k;
-                break;
-            default:
-                if (len == k + 1)
-                    return s[i];
+            }
+
+            else {
+                if (k == len - 1) {
+                    return c;
+                }
                 len--;
             }
         }
+
+        return '.';
     }
 };
