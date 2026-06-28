@@ -7,6 +7,6 @@ public:
         for(int i =1;i<n; i++){
             A[i] = min(A[i], A[i-1]+1);
         }
-        return A[n-1];
+        return A.back();
     }
 };
