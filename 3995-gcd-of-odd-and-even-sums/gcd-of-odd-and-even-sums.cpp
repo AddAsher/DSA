@@ -7,10 +7,9 @@ public:
             evenSum+=evenNum;
             oddSum+=oddNum;
             evenNum+=2;
-            
+
             oddNum+=2;
         }
-        cout<< oddSum<< "  "<< evenSum<<endl;
 
         int t = min(oddSum, evenSum);
         while(t>1){
